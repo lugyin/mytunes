@@ -14,7 +14,11 @@ var AppModel = Backbone.Model.extend({
 
 
     params.library.on('play', function(song){
-      this.set('currentSong', song);
+      if(Object.keys(this.get('currentSong').attributes).length === 0){
+        this.set('currentSong', song);
+      } else {
+        console.log("It will be played later!!");
+      }
     }, this);
 
    params.library.on('enqueue', function(song){
